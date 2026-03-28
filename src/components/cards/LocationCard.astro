@@ -1,0 +1,37 @@
+---
+const { location } = Astro.props;
+---
+<article class="content-card location-card">
+  <div class="location-card-copy">
+    <p class="card-kicker">{location.isPrimary ? "Primary Yard" : "Division Location"}</p>
+    <h3>{location.name}</h3>
+    <p>{location.description}</p>
+    <div class="stack-list">
+      <p>{location.streetAddress}</p>
+      <p>
+        {location.city}, {location.state} {location.postalCode}
+      </p>
+      {location.phone && <p><a href={`tel:${location.phone}`}>{location.phone}</a></p>}
+    </div>
+    <div class="hero-actions">
+      <a
+        class="cta-button"
+        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+          `${location.streetAddress}, ${location.city}, ${location.state} ${location.postalCode ?? ""}`,
+        )}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Get Directions
+      </a>
+      <a class="cta-button is-secondary" href="/quote">Request a Quote</a>
+    </div>
+  </div>
+  <iframe
+    class="map-frame location-map-frame"
+    src={location.mapEmbedUrl}
+    title={`${location.name} map`}
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  />
+</article>

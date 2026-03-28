@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/navigation/Header.astro";
+import Footer from "../components/footer/Footer.astro";
+import CTASection from "../sections/CTASection.astro";
+import ServicesSection from "../sections/ServicesSection.astro";
+import PageHero from "../components/common/PageHero.astro";
+import InfoGrid from "../components/common/InfoGrid.astro";
+import { site } from "../config/site";
+import { hardwareCategories } from "../content/hardware";
+
+const hardwareBenefits = [
+  { label: "Fastener Coverage", value: "Structural to finish hardware" },
+  { label: "Crew Support", value: "Restock without a second stop" },
+  { label: "Local Search Fit", value: "Florence hardware store intent" },
+];
+---
+<BaseLayout
+  pageTitle={site.pages.hardware.title}
+  pageDescription={site.pages.hardware.description}
+  pageKeywords={site.pages.hardware.keywords}
+>
+  <Header />
+  <main>
+    <PageHero {...site.pageHeroes.hardware} />
+    <ServicesSection
+      heading={{
+        eyebrow: "Hardware & Tools",
+        title: "Daily-use hardware categories for contractors and homeowners",
+        description:
+          "The demo reframes County Supply as more than lumber by giving the hardware department its own search-friendly page and clear in-stock story.",
+      }}
+      items={hardwareCategories}
+    />
+    <section class="content-section alt-surface">
+      <div class="shell">
+        <div class="section-header">
+          <p class="section-eyebrow">Department Value</p>
+          <h2>Why the hardware page matters</h2>
+          <p class="section-description">
+            Customers often search separately for hardware, fasteners, and tools. This page helps County Supply capture that traffic and justify the stop.
+          </p>
+        </div>
+        <InfoGrid items={hardwareBenefits} columns={3} />
+      </div>
+    </section>
+    <CTASection heading={site.home.sectionContent.cta} />
+  </main>
+  <Footer />
+</BaseLayout>

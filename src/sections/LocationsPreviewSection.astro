@@ -1,0 +1,26 @@
+---
+import SectionHeader from "../components/common/SectionHeader.astro";
+import CTAButton from "../components/common/CTAButton.astro";
+import { business } from "../config/business";
+---
+<section class="content-section alt-surface">
+  <div class="shell">
+    <SectionHeader {...Astro.props.heading} />
+    <div class="location-preview-grid">
+      {business.locations.map((location) => (
+        <article class="content-card location-preview-card">
+          <p class="card-kicker">{location.isPrimary ? "Main Yard" : "Division Support"}</p>
+          <h3>{location.name}</h3>
+          <p>{location.streetAddress}</p>
+          <p>
+            {location.city}, {location.state}
+          </p>
+          <p>{location.description}</p>
+          <div class="hero-actions">
+            <CTAButton href="/locations" label="View Location" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

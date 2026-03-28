@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/navigation/Header.astro";
+import Footer from "../components/footer/Footer.astro";
+import CTASection from "../sections/CTASection.astro";
+import ServicesSection from "../sections/ServicesSection.astro";
+import TestimonialsSection from "../sections/TestimonialsSection.astro";
+import PageHero from "../components/common/PageHero.astro";
+import InfoGrid from "../components/common/InfoGrid.astro";
+import { site } from "../config/site";
+import { contractorServices } from "../content/contractor-services";
+import { testimonials } from "../content/testimonials";
+
+const processPoints = [
+  { label: "1. Send A List", value: "Use the estimator or call the yard" },
+  { label: "2. Confirm Stock", value: "Review material categories and sourcing needs" },
+  { label: "3. Plan Pickup", value: "Coordinate pickup, quote, or delivery support" },
+];
+---
+<BaseLayout
+  pageTitle={site.pages.contractorServices.title}
+  pageDescription={site.pages.contractorServices.description}
+  pageKeywords={site.pages.contractorServices.keywords}
+>
+  <Header />
+  <main>
+    <PageHero {...site.pageHeroes.contractorServices} />
+    <ServicesSection
+      heading={{
+        eyebrow: "Contractor Services",
+        title: "Services built around active jobs and repeat buyers",
+        description:
+          "This page shifts County Supply from 'store' positioning toward 'supply partner' positioning, which is more credible for builder and contractor outreach.",
+      }}
+      items={contractorServices}
+    />
+    <section class="content-section alt-surface">
+      <div class="shell">
+        <div class="section-header">
+          <p class="section-eyebrow">Ordering Flow</p>
+          <h2>A simple process for quote-ready follow-up</h2>
+          <p class="section-description">
+            Contractors want to know how quickly they can go from dimensions to a conversation. This section makes the process obvious.
+          </p>
+        </div>
+        <InfoGrid items={processPoints} columns={3} />
+      </div>
+    </section>
+    <TestimonialsSection
+      heading={{
+        eyebrow: "Trade-Focused Messaging",
+        title: "Position the business for contractor confidence",
+        description: "These proof cards reinforce the supply-partner positioning without claiming fake credentials or fabricated awards.",
+      }}
+      items={testimonials}
+    />
+    <CTASection heading={site.home.sectionContent.cta} />
+  </main>
+  <Footer />
+</BaseLayout>

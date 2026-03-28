@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/navigation/Header.astro";
+import Footer from "../components/footer/Footer.astro";
+import PageHero from "../components/common/PageHero.astro";
+import ProjectEstimator from "../components/estimator/ProjectEstimator";
+import { site } from "../config/site";
+---
+<BaseLayout
+  pageTitle={site.pages.quote.title}
+  pageDescription={site.pages.quote.description}
+  pageKeywords={site.pages.quote.keywords}
+>
+  <Header />
+  <main>
+    <PageHero {...site.pageHeroes.quote} />
+    <section class="content-section">
+      <div class="shell">
+        <div class="section-header">
+          <p class="section-eyebrow">Lead Funnel</p>
+          <h2>Estimate materials and send the list to County Supply</h2>
+          <p class="section-description">
+            The calculators below are modular and reusable for lumberyards, fence companies, deck builders, and contractor-focused sales demos.
+          </p>
+        </div>
+        <ProjectEstimator client:load />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

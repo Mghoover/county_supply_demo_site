@@ -1,0 +1,85 @@
+---
+import { business } from "../config/business";
+import { theme } from "../config/theme";
+
+const { pageTitle, pageDescription } = Astro.props;
+const pageKeywords = Astro.props.pageKeywords ?? [];
+const resolvedTitle = pageTitle
+  ? `${pageTitle} | ${business.name}`
+  : business.name;
+const resolvedDescription = pageDescription ?? business.description;
+const canonicalUrl = new URL(Astro.url.pathname, business.websiteUrl).toString();
+const schema = {
+  "@context": "https://schema.org",
+  "@type": business.schemaType,
+  name: business.name,
+  description: business.description,
+  url: business.websiteUrl,
+  telephone: business.phone,
+  email: business.email,
+  areaServed: business.serviceAreas,
+  parentOrganization: business.divisionOf
+    ? {
+        "@type": "Organization",
+        name: business.divisionOf,
+      }
+    : undefined,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: business.address,
+    addressLocality: business.city,
+    addressRegion: business.state,
+    postalCode: business.postalCode,
+  },
+  department: business.locations?.map((location) => ({
+    "@type": "HomeAndConstructionBusiness",
+    name: `${business.name} ${location.name}`,
+    telephone: location.phone ?? business.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: location.streetAddress,
+      addressLocality: location.city,
+      addressRegion: location.state,
+      postalCode: location.postalCode,
+    },
+  })),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={resolvedDescription} />
+    {pageKeywords.length > 0 && (
+      <meta name="keywords" content={pageKeywords.join(", ")} />
+    )}
+    <title>{resolvedTitle}</title>
+    <meta property="og:title" content={resolvedTitle} />
+    <meta property="og:description" content={resolvedDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <style define:vars={{
+      primaryColor: theme.primaryColor,
+      accentColor: theme.accentColor,
+      surfaceColor: theme.surfaceColor,
+      headingFont: theme.fontHeading,
+      bodyFont: theme.fontBody,
+    }}>
+      :root {
+        --primaryColor: var(--primaryColor);
+        --accentColor: var(--accentColor);
+        --surfaceColor: var(--surfaceColor);
+        --headingFont: var(--headingFont);
+        --bodyFont: var(--bodyFont);
+      }
+    </style>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

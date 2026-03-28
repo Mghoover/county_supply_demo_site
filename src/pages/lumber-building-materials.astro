@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/navigation/Header.astro";
+import Footer from "../components/footer/Footer.astro";
+import CTASection from "../sections/CTASection.astro";
+import GallerySection from "../sections/GallerySection.astro";
+import ServicesSection from "../sections/ServicesSection.astro";
+import PageHero from "../components/common/PageHero.astro";
+import InfoGrid from "../components/common/InfoGrid.astro";
+import { site } from "../config/site";
+import { lumberCategories } from "../content/lumber";
+import { gallery } from "../content/gallery";
+
+const supportPoints = [
+  { label: "Core Stock", value: "Framing, treated, panels, trim" },
+  { label: "Audience", value: "Contractors, builders, DIY owners" },
+  { label: "Local Focus", value: "Florence SC lumber yard support" },
+];
+---
+<BaseLayout
+  pageTitle={site.pages.lumber.title}
+  pageDescription={site.pages.lumber.description}
+  pageKeywords={site.pages.lumber.keywords}
+>
+  <Header />
+  <main>
+    <PageHero {...site.pageHeroes.lumber} />
+    <ServicesSection
+      heading={{
+        eyebrow: "Lumber Categories",
+        title: "Lumber and panel categories ready for everyday jobs in Florence, SC",
+        description:
+          "This page helps County Supply present a fuller building materials inventory instead of leaving customers guessing what the yard actually carries.",
+      }}
+      items={lumberCategories}
+    />
+    <section class="content-section alt-surface">
+      <div class="shell">
+        <div class="section-header">
+          <p class="section-eyebrow">Why It Works</p>
+          <h2>Clear material categories improve both SEO and quote quality</h2>
+          <p class="section-description">
+            Customers searching for a Florence SC building supply yard can land on a page that speaks directly to framing, decking, panels, and treated stock.
+          </p>
+        </div>
+        <InfoGrid items={supportPoints} columns={3} />
+      </div>
+    </section>
+    <GallerySection
+      heading={{
+        eyebrow: "Yard Presentation",
+        title: "Visual direction for a cleaner lumberyard brand",
+        description: "The imagery leans into stocked materials, organized pickup flow, and contractor-ready support.",
+      }}
+      items={gallery}
+    />
+    <CTASection heading={site.home.sectionContent.cta} />
+  </main>
+  <Footer />
+</BaseLayout>

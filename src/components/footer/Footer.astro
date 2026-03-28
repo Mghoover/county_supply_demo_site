@@ -1,0 +1,51 @@
+---
+import { business } from "../../config/business";
+import { nav } from "../../config/navigation";
+---
+<footer class="site-footer">
+  <div class="shell footer-shell">
+    <div>
+      <h2>{business.name}</h2>
+      <p>{business.tagline}</p>
+      {business.divisionOf && <p>Division of {business.divisionOf}</p>}
+    </div>
+    <div>
+      {business.locations?.length ? (
+        <>
+          <h3>Locations</h3>
+          {business.locations.map((location) => (
+            <p>
+              <strong>{location.name}</strong><br />
+              {location.streetAddress}<br />
+              {location.city}, {location.state} {location.postalCode}
+            </p>
+          ))}
+        </>
+      ) : (
+        <>
+          <h3>Address</h3>
+          <p>{business.address}</p>
+          <p>{business.city}, {business.state} {business.postalCode}</p>
+        </>
+      )}
+    </div>
+    <div>
+      <h3>Contact</h3>
+      {business.phone && <p><a href={`tel:${business.phone}`}>{business.phone}</a></p>}
+      {business.email && <p><a href={`mailto:${business.email}`}>{business.email}</a></p>}
+      <p><a href="/contact">Contact</a></p>
+    </div>
+    <div>
+      <h3>Browse</h3>
+      {nav.map((item) => (
+        <p><a href={item.link}>{item.label}</a></p>
+      ))}
+    </div>
+    <div>
+      <h3>Social</h3>
+      <p><a href={business.social.facebook}>Facebook</a></p>
+      <p><a href={business.social.instagram}>Instagram</a></p>
+      <p><a href={business.social.google}>Google</a></p>
+    </div>
+  </div>
+</footer>

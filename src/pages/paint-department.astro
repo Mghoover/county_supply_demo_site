@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/navigation/Header.astro";
+import Footer from "../components/footer/Footer.astro";
+import CTASection from "../sections/CTASection.astro";
+import ServicesSection from "../sections/ServicesSection.astro";
+import PageHero from "../components/common/PageHero.astro";
+import InfoGrid from "../components/common/InfoGrid.astro";
+import { site } from "../config/site";
+import { paintCategories } from "../content/paint";
+
+const paintWorkflow = [
+  { label: "Match The Project", value: "Interior, exterior, prep, and tools" },
+  { label: "Bundle The Order", value: "Combine paint with hardware and lumber" },
+  { label: "Request A Quote", value: "Use the estimator for larger jobs" },
+];
+---
+<BaseLayout
+  pageTitle={site.pages.paint.title}
+  pageDescription={site.pages.paint.description}
+  pageKeywords={site.pages.paint.keywords}
+>
+  <Header />
+  <main>
+    <PageHero {...site.pageHeroes.paint} />
+    <ServicesSection
+      heading={{
+        eyebrow: "Paint Department",
+        title: "Paint and finishing support tied to real project workflows",
+        description:
+          "The paint page gives County Supply another revenue-friendly department presence while keeping the copy grounded in local project needs.",
+      }}
+      items={paintCategories}
+    />
+    <section class="content-section alt-surface">
+      <div class="shell">
+        <div class="section-header">
+          <p class="section-eyebrow">Finish Work</p>
+          <h2>Keep the project package together</h2>
+          <p class="section-description">
+            A dedicated paint department page helps homeowners and property owners see County Supply as a practical source for maintenance and finish work too.
+          </p>
+        </div>
+        <InfoGrid items={paintWorkflow} columns={3} />
+      </div>
+    </section>
+    <CTASection heading={site.home.sectionContent.cta} />
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import SectionHeader from "../components/common/SectionHeader.astro";
+import { business } from "../config/business";
+
+const { heading } = Astro.props;
+---
+<section class="content-section alt-surface">
+  <div class="shell split-layout">
+    <div>
+      <SectionHeader {...heading} />
+      <div class="stack-list">
+        <p>{business.address}</p>
+        <p>{business.city}, {business.state} {business.postalCode}</p>
+        <p><a href={`tel:${business.phone}`}>{business.phone}</a></p>
+        <p><a href={`mailto:${business.email}`}>{business.email}</a></p>
+      </div>
+      <div class="tag-list">
+        {business.serviceAreas.map((area) => <span>{area}</span>)}
+      </div>
+    </div>
+    <iframe
+      class="map-frame"
+      src={business.mapEmbedUrl}
+      title={`${business.name} map`}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    />
+  </div>
+</section>

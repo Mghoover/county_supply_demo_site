@@ -1,0 +1,31 @@
+---
+import CTAButton from "../components/common/CTAButton.astro";
+import SectionHeader from "../components/common/SectionHeader.astro";
+---
+<section class="content-section">
+  <div class="shell">
+    <div class="quote-preview-panel cta-panel">
+      <SectionHeader {...Astro.props.heading} />
+      <div class="quote-preview-grid">
+        <div class="quote-preview-card">
+          <p>
+            Generate a quick material list for a deck, fence, or shed project, then send it to County Supply for follow-up.
+          </p>
+          <ul class="tag-list">
+            {Astro.props.heading.features?.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="quote-preview-card quote-preview-card-accent">
+          <h3>Estimator Tool</h3>
+          <p>
+            Prefills project dimensions and the generated material list into a lead form for demo-friendly quote capture.
+          </p>
+          <div class="hero-actions">
+            <CTAButton href="/quote" label="Open Estimator" />
+            <CTAButton href="/contact" label="Contact the Yard" variant="secondary" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

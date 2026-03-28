@@ -1,0 +1,37 @@
+---
+import CTAButton from "./CTAButton.astro";
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  highlights = [],
+  imageSrc,
+  imageAlt,
+} = Astro.props;
+---
+<section class="page-hero">
+  <div class="shell page-hero-shell">
+    <div class="page-hero-copy">
+      <p class="section-eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="hero-description">{description}</p>
+      <div class="hero-actions">
+        {primaryCta && <CTAButton href={primaryCta.href} label={primaryCta.label} />}
+        {secondaryCta && (
+          <CTAButton href={secondaryCta.href} label={secondaryCta.label} variant="secondary" />
+        )}
+      </div>
+      {highlights.length > 0 && (
+        <ul class="tag-list hero-tag-list">
+          {highlights.map((item) => <li>{item}</li>)}
+        </ul>
+      )}
+    </div>
+    <div class="page-hero-visual content-card">
+      {imageSrc && <img class="page-hero-image" src={imageSrc} alt={imageAlt ?? title} />}
+    </div>
+  </div>
+</section>
