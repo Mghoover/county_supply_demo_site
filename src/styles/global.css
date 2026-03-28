@@ -666,6 +666,21 @@ textarea {
 }
 
 @media (max-width: 900px) {
+  .header-shell {
+    gap: 0.75rem 1rem;
+    padding: 0.75rem 0;
+  }
+
+  .brand-mark {
+    min-width: 0;
+  }
+
+  .brand-mark img {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+  }
+
   .hero-shell,
   .page-hero-shell,
   .split-layout,
@@ -682,16 +697,74 @@ textarea {
 
   .site-nav {
     justify-content: flex-start;
+    flex: 1 1 100%;
+    gap: 0.35rem 0.45rem;
   }
 
   .header-phone {
-    width: 100%;
+    width: auto;
+    padding: 0.65rem 0.95rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 640px) {
   .shell {
     width: min(100% - 1.1rem, 1160px);
+  }
+
+  .site-header {
+    backdrop-filter: blur(12px);
+  }
+
+  .header-shell {
+    gap: 0.55rem 0.8rem;
+    padding: 0.6rem 0;
+  }
+
+  .brand-mark {
+    gap: 0.7rem;
+    flex: 1 1 auto;
+  }
+
+  .brand-mark img {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .brand-mark strong {
+    font-size: 0.98rem;
+    margin-bottom: 0;
+  }
+
+  .brand-mark span,
+  .brand-division {
+    display: none;
+  }
+
+  .site-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.35rem;
+    padding-bottom: 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav a {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .header-phone {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.82rem;
   }
 
   .hero-section,
