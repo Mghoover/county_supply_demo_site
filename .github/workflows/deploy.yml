@@ -13,6 +13,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://mghoover.github.io
+      SITE_BASE: /county_supply_demo_site
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
