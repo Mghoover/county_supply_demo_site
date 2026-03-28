@@ -1,8 +1,10 @@
 ---
+import { withBase } from "../../utils/paths";
+
 const { item } = Astro.props;
 ---
 <article class="content-card menu-card">
-  {item.image && <img src={item.image} alt={item.name} loading="lazy" />}
+  {item.image && <img src={withBase(item.image)} alt={item.name} loading="lazy" />}
   <div class="menu-card-copy">
     <div class="menu-card-row">
       <h3>{item.name}</h3>

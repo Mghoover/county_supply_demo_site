@@ -1,5 +1,6 @@
 ---
 import CTAButton from "../components/common/CTAButton.astro";
+import { withBase } from "../utils/paths";
 
 const { hero } = Astro.props;
 ---
@@ -24,7 +25,7 @@ const { hero } = Astro.props;
       {hero.visualImage && (
         <img
           class="hero-visual-image"
-          src={hero.visualImage}
+          src={withBase(hero.visualImage)}
           alt={hero.visualAlt ?? hero.title}
         />
       )}

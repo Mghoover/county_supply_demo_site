@@ -1,6 +1,7 @@
 ---
 import { business } from "../../config/business";
 import { nav } from "../../config/navigation";
+import { withBase } from "../../utils/paths";
 ---
 <footer class="site-footer">
   <div class="shell footer-shell">
@@ -33,12 +34,12 @@ import { nav } from "../../config/navigation";
       <h3>Contact</h3>
       {business.phone && <p><a href={`tel:${business.phone}`}>{business.phone}</a></p>}
       {business.email && <p><a href={`mailto:${business.email}`}>{business.email}</a></p>}
-      <p><a href="/contact">Contact</a></p>
+      <p><a href={withBase("/contact")}>Contact</a></p>
     </div>
     <div>
       <h3>Browse</h3>
       {nav.map((item) => (
-        <p><a href={item.link}>{item.label}</a></p>
+        <p><a href={withBase(item.link)}>{item.label}</a></p>
       ))}
     </div>
     <div>

@@ -1,6 +1,8 @@
 ---
+import { withBase } from "../../utils/paths";
+
 const { href, label, variant = "primary" } = Astro.props;
 ---
-<a class:list={["cta-button", variant === "secondary" && "is-secondary"]} href={href}>
+<a class:list={["cta-button", variant === "secondary" && "is-secondary"]} href={withBase(href)}>
   {label}
 </a>

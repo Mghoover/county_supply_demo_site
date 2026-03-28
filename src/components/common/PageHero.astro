@@ -1,5 +1,6 @@
 ---
 import CTAButton from "./CTAButton.astro";
+import { withBase } from "../../utils/paths";
 
 const {
   eyebrow,
@@ -31,7 +32,7 @@ const {
       )}
     </div>
     <div class="page-hero-visual content-card">
-      {imageSrc && <img class="page-hero-image" src={imageSrc} alt={imageAlt ?? title} />}
+      {imageSrc && <img class="page-hero-image" src={withBase(imageSrc)} alt={imageAlt ?? title} />}
     </div>
   </div>
 </section>

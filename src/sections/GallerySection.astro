@@ -1,5 +1,6 @@
 ---
 import SectionHeader from "../components/common/SectionHeader.astro";
+import { withBase } from "../utils/paths";
 
 const { heading, items } = Astro.props;
 ---
@@ -9,7 +10,7 @@ const { heading, items } = Astro.props;
     <div class="gallery-grid">
       {items.map((item) => (
         <article class="gallery-card">
-          <img src={item.image ?? "/images/photo-placeholder.svg"} alt={item.title} loading="lazy" />
+          <img src={withBase(item.image ?? "/images/photo-placeholder.svg")} alt={item.title} loading="lazy" />
           <div class="gallery-card-copy">
             <h3>{item.title}</h3>
             {item.subtitle && <p>{item.subtitle}</p>}

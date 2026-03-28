@@ -1,6 +1,8 @@
 ---
+import "../styles/global.css";
 import { business } from "../config/business";
 import { theme } from "../config/theme";
+import { withBase } from "../utils/paths";
 
 const { pageTitle, pageDescription } = Astro.props;
 const pageKeywords = Astro.props.pageKeywords ?? [];
@@ -8,13 +10,15 @@ const resolvedTitle = pageTitle
   ? `${pageTitle} | ${business.name}`
   : business.name;
 const resolvedDescription = pageDescription ?? business.description;
-const canonicalUrl = new URL(Astro.url.pathname, business.websiteUrl).toString();
+const siteOrigin = Astro.site?.toString() ?? business.websiteUrl;
+const siteHomeUrl = new URL(import.meta.env.BASE_URL, siteOrigin).toString();
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin).toString();
 const schema = {
   "@context": "https://schema.org",
   "@type": business.schemaType,
   name: business.name,
   description: business.description,
-  url: business.websiteUrl,
+  url: siteHomeUrl,
   telephone: business.phone,
   email: business.email,
   areaServed: business.serviceAreas,
@@ -60,7 +64,7 @@ const schema = {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href={withBase("/favicon.svg")} />
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <style define:vars={{
       primaryColor: theme.primaryColor,
@@ -77,7 +81,6 @@ const schema = {
         --bodyFont: var(--bodyFont);
       }
     </style>
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <slot />
