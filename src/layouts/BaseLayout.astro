@@ -82,7 +82,10 @@ const schema = {
         --bodyFont: var(--bodyFont);
       }
     </style>
-    <script is:inline set:html={`window.ORDINIS_SITE_ID = ${JSON.stringify(hub.siteId)};`}></script>
+    <script
+      is:inline
+      set:html={`window.ORDINIS_HUB_ENDPOINT = ${JSON.stringify(hub.endpointUrl)};\nwindow.ORDINIS_SITE_ID = ${JSON.stringify(hub.siteId)};`}
+    ></script>
     <script src={hub.trackerUrl}></script>
   </head>
   <body>

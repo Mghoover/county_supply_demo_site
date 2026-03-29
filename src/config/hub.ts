@@ -1,4 +1,5 @@
 export const hub = {
-  siteId: "county-supply-demo",
-  trackerUrl: "https://hub.app.ordinistechnologies.com/tracker.js",
+  siteId: "cs-lcl",
+  endpointUrl: "https://hub.app.ordinistechnologies.com/api/analytics/event",
+  trackerUrl: "https://hub.app.ordinistechnologies.com/tracking-snippet.js",
 };
