@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { business } from "../config/business";
+import { hub } from "../config/hub";
 import { theme } from "../config/theme";
 import { withBase } from "../utils/paths";
 
@@ -81,6 +82,8 @@ const schema = {
         --bodyFont: var(--bodyFont);
       }
     </style>
+    <script is:inline>{`window.ORDINIS_SITE_ID = ${JSON.stringify(hub.siteId)};`}</script>
+    <script src={hub.trackerUrl}></script>
   </head>
   <body>
     <slot />
